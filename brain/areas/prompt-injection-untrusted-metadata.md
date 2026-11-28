@@ -1,8 +1,9 @@
 ---
 title: Prompt injection through untrusted YouTube metadata
 type: research
-status: inbox
+status: distilled
 created: 2026-11-27
+updated: 2026-11-28
 authors: [77-Div-77]
 tags: [prompt-injection, security, youtube-api]
 requirements: [SC-4, SK-1.2]

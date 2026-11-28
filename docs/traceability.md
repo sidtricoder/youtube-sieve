@@ -319,6 +319,10 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [identity]: ../brain/inbox/youtube-oauth-scopes-and-identity.md
 [tokens]: ../brain/inbox/youtube-oauth-token-lifecycle.md
 [metadata]: ../brain/inbox/prompt-injection-untrusted-metadata.md
+[auth]: ../brain/areas/mcp-authorization.md
+[identity]: ../brain/areas/youtube-oauth-scopes-and-identity.md
+[tokens]: ../brain/areas/youtube-oauth-token-lifecycle.md
+[metadata]: ../brain/areas/prompt-injection-untrusted-metadata.md
 [channels]: ../brain/areas/youtube-similarity-without-related-endpoint.md
 [skill-format]: ../brain/resources/agent-skills-format.md
 [para]: ../brain/resources/para-method.md

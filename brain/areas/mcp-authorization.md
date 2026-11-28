@@ -1,11 +1,12 @@
 ---
 title: MCP authorization for HTTP servers
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
-authors: [sidtricoder]
+updated: 2026-11-28
+authors: [sidtricoder, 77-Div-77]
 tags: [mcp, oauth, security]
-requirements: [AC-3, AC-4, AC-5, AC-6, AC-10]
+requirements: [AC-3, AC-4, AC-5, AC-6, AC-10, IF-5, IF-7, IF-8, SC-1, SC-3]
 sources:
   - https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization.md
   - https://modelcontextprotocol.io/specification/2026-07-28/server/tools.md
@@ -21,8 +22,8 @@ There are three roles. The **MCP server** is an OAuth *resource server*: it acce
 ## Key points
 
 **Discovery: how a client finds out where to sign in**
-1. The client calls the server without a token. The server replies **401** with a `WWW-Authenticate: Bearer` header containing `resource_metadata="<url>"` and, ideally, `scope="..."` listing the scopes needed.
-2. The server **must** publish **Protected Resource Metadata** (RFC 9728) at that URL, naming its authorization server(s) and `scopes_supported`.
+1. A protected request without a valid token gets **401** with a `WWW-Authenticate: Bearer` header containing `resource_metadata="<url>"` and the required `scope="..."` (IF-5). Public requests need no token.
+2. The server **must** publish **Protected Resource Metadata** (RFC 9728), naming its authorization server(s); it can advertise `scopes_supported`.
 3. The client reads the authorization server's metadata through RFC 8414 or OpenID Connect Discovery. Authorization servers must offer at least one; clients must support both.
 
 **Client registration: how the client gets a client ID**
@@ -39,7 +40,7 @@ Three options:
 **Using tokens**
 - The token goes in `Authorization: Bearer <token>` on **every** HTTP request, and **never** in the URL query string.
 - The server **must** validate each token, including that its **audience** is this server. Invalid or expired tokens get **401**.
-- **No token passthrough:** a server must only accept tokens issued for itself, and must not accept or forward any other token.
+- **No token passthrough:** accept only tokens issued for this MCP server; never forward a caller's MCP token to Google. Upstream Google calls use a separately obtained user grant.
 
 **Scopes**
 - Clients should request the least privilege: the scopes from the 401 challenge, otherwise `scopes_supported`.
@@ -51,11 +52,18 @@ Three options:
 
 ## Relevance to youtube-sieve
 - **Two separate OAuth relationships.** Our server is the *resource server* for MCP clients, and also a *client* of Google for YouTube access. Because of the no-passthrough rule, an MCP access token must never be forwarded to Google, and Google tokens must never be accepted as MCP tokens. The server keeps each user's Google grant itself and looks it up from the verified MCP token. This underpins user isolation (AC-10).
-- **Public versus signed-in** (AC-3, AC-4, AC-5): similar videos and channels can work without a token, while recommendations, engagement analysis and playlist writes answer 401 with the metadata URL and scopes, and 403 `insufficient_scope` when a write scope is missing.
+- **Public versus signed-in** (AC-3, AC-4, AC-5): public discovery needs no token; personal tools, draft creation and status require valid MCP credentials. IF-8's application scope is separate from Google permissions. A missing MCP scope gets HTTP 403; no MCP scope permits playlist writes.
 - **SRS update needed:** AC-6 currently names dynamic client registration. The current specification prefers Client ID Metadata Documents and marks dynamic registration as deprecated, so AC-6 should require metadata documents and keep dynamic registration only for compatibility.
+
+> **Update (2026-11-28):** SRS v0.2 AC-6 now requires Client ID Metadata Documents, with RFC 7591 only for compatibility, and RFC 9207 issuer identification. IF-7 requires exact redirects and bounded, untrusted metadata fetched from the HTTPS client-ID URL. [[decision-tech-stack]] assigns server-side metadata-document support to our SDK provider hooks; implementation is still planned.
+
+- **Credential boundaries:** SC-1 requires hashed MCP credentials, access-token lifetimes of at most one hour, and refresh rotation with family revocation on replay. SC-3 keeps browser sessions separate; see [[playlist-confirmation-security]].
 - **Tests to plan:** 401 with a correct `WWW-Authenticate`; wrong-audience and expired tokens rejected even on public tools; tokens in query strings rejected; a 403 step-up challenge.
-- Google-side scopes and token expiry are covered separately (issue #14).
+- Google-side scopes and token expiry are covered in [[youtube-oauth-scopes-and-identity]] and [[youtube-oauth-token-lifecycle]]. Missing Google write permission uses `write_access_required`, not an MCP scope challenge; see [[decision-error-catalogue]].
 
 ## Related
 - [[mcp-fundamentals]]
+- [[youtube-oauth-scopes-and-identity]]
+- [[youtube-oauth-token-lifecycle]]
+- [[decision-tech-stack]]
 - [[index]]
