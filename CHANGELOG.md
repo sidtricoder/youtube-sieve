@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Run-log rows for the brain-ingest runs in #25 and #27 (#35).
+- Traceability links and the run log updated after the #50 notes moved (#77).
 
 ## [0.1.0] - 2026-11-27
 
