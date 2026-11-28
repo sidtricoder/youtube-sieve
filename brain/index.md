@@ -23,6 +23,7 @@ Every run of a brain skill is recorded in [[log]].
 
 ## Areas
 
+- [[decision-storage]]: database profiles, transaction primitives and migration tooling (ADR 0006)
 - [[decision-shared-data-model]]: owner deletion and shared quota accounting
 
 - [[decision-ci-and-validation-tooling]]: why Ruff, pytest, Gitleaks and a custom vault validator

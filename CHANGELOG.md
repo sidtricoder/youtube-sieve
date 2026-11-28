@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- ADR 0006 selects the database, data-access layer and migration workflow (#42).
 - Logical data model with entity relationships, field protection, retention and transaction boundaries (#41).
 - Team skill for answering questions and drafting documents from cited vault notes, with a logged playlist-confirmation trial (#49).
 - Requirements traceability matrix and contributor guidance for keeping it current (#55).

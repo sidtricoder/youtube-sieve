@@ -120,7 +120,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | QM-1 · Daily ledger | Quota day and reset tested; ledger planned | [#23][i23], [#46][i46] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
 | QM-2 · Preflight estimate | Cost and budget comparisons tested; enforcement planned | [#19][i19], [#23][i23] | [#20][p20], [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
 | QM-3 · Caller budgets | Cost and budget comparisons tested; enforcement planned | [#19][i19], [#23][i23] | [#20][p20], [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
-| QM-4 · Atomic reservations | Settlement arithmetic tested; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
+| QM-4 · Atomic reservations | Settlement arithmetic tested; atomic persistence designed | [#23][i23], [#46][i46], [#42][i42] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [ADR 0006](adr/0006-storage.md) |
 | QM-5 · Metadata cache | Planned | [#46][i46] | — | — |
 | QM-6 · Call batching | Batch cost arithmetic tested; provider calls planned | [#23][i23], [#40][i40] | [#24][p24], [#63][p63] | [Quota tests][quota-tests], [ADR 0005][provider] |
 | QM-7 · Usage report | Planned | — | — | — |
@@ -178,7 +178,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | DC-2 · Quota allowances | Cost and budget comparisons tested; enforcement planned | [#19][i19], [#23][i23] | [#20][p20], [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
 | DC-3 · Metadata similarity | TF-IDF ranking tested; discovery workflows planned | [#13][i13], [#21][i21] | [#22][p22], [#25][p25], [#26][p26] | [Ranking tests][rank-tests], [Ranking decision][rank], [Candidate discovery][channels] |
 | DC-4 · Python stack | Stack selected; service integration planned | [#38][i38], [#47][i47] | [#59][p59] | [ADR 0004][stack] |
-| DC-5 · Database | Storage design planned | [#42][i42] | — | — |
+| DC-5 · Database | Storage backend and migration policy decided; adapter planned | [#42][i42] | — | [ADR 0006](adr/0006-storage.md) |
 | DC-6 · Google data policy | Planned | — | — | — |
 
 ### SC · Security
@@ -189,7 +189,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | SC-2 · Encryption | Token lifecycle researched; enforcement planned | [#14][i14], [#44][i44] | [#28][p28] | [Token lifecycle][tokens] |
 | SC-3 · Session cookies | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-4 · Prompt injection | Threat researched; product safeguards planned | [#14][i14] | [#29][p29] | [Untrusted metadata][metadata] |
-| SC-5 · Input validation | Planned | — | — | — |
+| SC-5 · Input validation | Parameter binding specified; implementation planned | [#42][i42] | — | [ADR 0006](adr/0006-storage.md) |
 | SC-6 · Least privilege | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-7 · Redirects and replay | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-8 · CSRF and origin | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
@@ -220,7 +220,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
 | SL-1 · Stateless instances | Architecture documented; deployment and integration planned | [#39][i39] | [#58][p58] | [ADR 0003][layers] |
-| SL-2 · Atomic coordination | Settlement arithmetic tested; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
+| SL-2 · Atomic coordination | Transaction boundaries specified; concurrency tests planned | [#23][i23], [#46][i46], [#42][i42] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [ADR 0006](adr/0006-storage.md) |
 
 ### MT · Maintainability
 
