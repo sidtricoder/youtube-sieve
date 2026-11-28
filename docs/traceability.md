@@ -148,7 +148,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | IF-6 · Discovery 404s | Planned | — | — | — |
 | IF-7 · Client registration | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | IF-8 · Scopes | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
-| IF-9 · Browser routes | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
+| IF-9 · Browser routes | Health route tested; other browser routes planned | [#19][i19], [#45][i45], [#47][i47] | [#20][p20] | [ADR 0002][confirm], [Server tests](../tests/test_server.py) |
 | IF-10 · YouTube provider | Provider contract designed; adapters planned | [#40][i40] | [#63][p63] | [ADR 0005][provider] |
 | IF-11 · Outbound requests | Provider contract designed; adapters planned | [#40][i40] | [#63][p63] | [ADR 0005][provider] |
 | IF-12 · Transport | Stack selected; service integration planned | [#38][i38], [#47][i47] | [#59][p59] | [ADR 0004][stack] |
@@ -162,7 +162,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | PF-3 · Draft latency | Planned | — | — | — |
 | PF-4 · Account analysis | Planned | — | — | — |
 | PF-5 · Playlist writes | Planned | — | — | — |
-| PF-6 · Local requests | Planned | — | — | — |
+| PF-6 · Local requests | Local health handler tested; p95 latency verification planned | [#47][i47] | — | [Server tests](../tests/test_server.py) |
 | PF-7 · Authorization overhead | Planned | — | — | — |
 | PF-8 · Cold start | Planned | — | — | — |
 | PF-9 · Concurrency | Planned | — | — | — |
@@ -232,7 +232,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
-| PT-1 · Container delivery | Architecture documented; deployment and integration planned | [#39][i39] | [#58][p58] | [ADR 0003][layers] |
+| PT-1 · Container delivery | Environment-based server configuration tested; container delivery planned | [#39][i39], [#47][i47] | [#58][p58] | [ADR 0003][layers], [Server tests](../tests/test_server.py) |
 
 ### IO · Interoperability
 
