@@ -308,7 +308,7 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [ingest]: ../skills/brain-ingest/SKILL.md
 [refine]: ../skills/brain-refine/SKILL.md
 [rank]: ../brain/areas/decision-tfidf-similarity.md
-[duration]: ../brain/inbox/iso-8601-durations.md
+[duration]: ../brain/resources/iso-8601-durations.md
 [quota]: adr/0001-enforce-quota-budget-before-api-calls.md
 [confirm]: adr/0002-browser-only-playlist-confirmation.md
 [layers]: adr/0003-layered-architecture.md
@@ -319,7 +319,7 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [identity]: ../brain/inbox/youtube-oauth-scopes-and-identity.md
 [tokens]: ../brain/inbox/youtube-oauth-token-lifecycle.md
 [metadata]: ../brain/inbox/prompt-injection-untrusted-metadata.md
-[channels]: ../brain/inbox/youtube-similarity-without-related-endpoint.md
+[channels]: ../brain/areas/youtube-similarity-without-related-endpoint.md
 [skill-format]: ../brain/resources/agent-skills-format.md
 [para]: ../brain/resources/para-method.md
 [skill-validation]: ../brain/areas/decision-skill-validation.md
