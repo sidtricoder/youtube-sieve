@@ -65,6 +65,8 @@ Because pull requests are merged with a merge commit, **every commit on your bra
 
 ## Pull requests
 
+- Update the affected rows in the [traceability matrix](docs/traceability.md) with the issue, PR and verification evidence before requesting review.
+
 - One issue per pull request. Aim for fewer than about 400 changed lines.
 - Fill in every section of the template, and write `Closes #<n>`.
 - Open a **draft** pull request early if you want feedback on direction.
@@ -115,7 +117,7 @@ CI runs these on every pull request; run them before you push. You need Python 3
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install --group dev -e .   # dev tools + the package in editable mode
+python -m pip install -c requirements.lock --group dev -e .   # dev tools + the package in editable mode
 
 ruff check .                      # lint
 ruff format .                     # format (CI runs: ruff format --check .)

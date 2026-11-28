@@ -9,6 +9,8 @@ description = "MCP server for focused YouTube playlist curation using the offici
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi==0.165.0",
+    "uvicorn==0.54.0",
     "tzdata==2026.6",  # time-zone data for platforms without a system database (Windows)
 ]
 
@@ -17,6 +19,7 @@ packages = ["src/youtube_sieve"]
 
 [dependency-groups]
 dev = [
+    "httpx2==2.16.2",  # FastAPI TestClient
     "pytest==9.2.0",
     "pytest-cov==7.1.0",
     "pyyaml==6.0.3",

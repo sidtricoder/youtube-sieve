@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- ADR 0006 selects the database, data-access layer and migration workflow (#42).
+- Logical data model with entity relationships, field protection, retention and transaction boundaries (#41).
+- Team skill for answering questions and drafting documents from cited vault notes, with a logged playlist-confirmation trial (#49).
+- Local FastAPI server with a configurable bind address and port and a public health check (#47).
+- Requirements traceability matrix and contributor guidance for keeping it current (#55).
+
 - Software Requirements Specification in `docs/srs.md`, converted from the Word document, with its figures (#32).
 - Research note on testing against recorded fixtures and mocks, completing #14.
 - ADR 0003: layered ports-and-adapters architecture with fixed import rules, and its decision note (#39).
@@ -25,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CONTRIBUTING.md` describes the team's merge-commit workflow: merging `main` into branches, resolving `CHANGELOG.md` conflicts, stacked pull requests, and Conventional Commits on every commit (#37).
 - SRS v0.2: AC-3, AC-6, IF-7 and A-2 follow MCP specification 2026-07-28 (stateless requests; Client ID Metadata Documents preferred over deprecated dynamic client registration). §3.8, QM-1, QM-2, QM-3, QM-6 and DC-2 use Google's two quota allowances: 100 `search.list` calls and 10,000 units a day. The per-account default budget is raised to 3,000 units so the largest playlist fits (#32).
 - The provider design's error table now points to the codes in the error catalogue instead of provisional ones (#43).
+- The seven YouTube API, duration and similarity research notes are refined out of `brain/inbox/` into `brain/areas/` and `brain/resources/`, with dated update lines where later decisions changed them, and linked from `brain/index.md` (#50).
 
 ### Fixed
 

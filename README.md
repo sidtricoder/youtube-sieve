@@ -18,8 +18,19 @@ cd youtube-sieve
 python -m venv .venv
 # Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install --group dev -e .
+python -m pip install -c requirements.lock --group dev -e .
 ```
+
+Start the local HTTP server:
+
+```bash
+python -m youtube_sieve
+```
+
+From another terminal, run `curl http://127.0.0.1:8000/health`. A running server
+returns HTTP 200 and `{"status":"ok"}`. Press Ctrl+C in the server terminal to stop it.
+To change the bind address or port, export the variables shown in [.env.example](.env.example)
+before starting the server.
 
 Run the same checks as CI:
 
