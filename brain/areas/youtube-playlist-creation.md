@@ -1,8 +1,9 @@
 ---
 title: Creating playlists through the YouTube Data API
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
+updated: 2026-11-28
 authors: [Devaang-Rastogi]
 tags: [youtube-api, playlists]
 requirements: [FR-5, TQ-4]
@@ -39,8 +40,11 @@ Building a playlist takes two kinds of call. First, **`playlists.insert`** creat
 
 ## Relevance to youtube-sieve
 - **Explicit confirmation before writing (FR-5).** Writes cost 50 units each ([[youtube-api-quota-costs]]) and change the user's account, so the tool must first show the title, privacy setting, video list and estimated quota cost, and write only after the user confirms. Video titles or descriptions never count as consent.
+  > **Update (2026-11-28):** Confirmation happens only in the user's own browser, on a page showing the draft, never through the AI client or an MCP tool ([[decision-browser-only-playlist-confirmation]], ADR 0002).
 - **Private by default.** We always send `status.privacyStatus`. The default is `private` unless the user picks another value, so nothing becomes public by accident.
+  > **Update (2026-11-28):** Playlists are always created private (FR-5.15). The write interface has no privacy parameter, so a user cannot pick public or unlisted ([[decision-youtube-provider-interface]]).
 - **Least privilege.** Ask for the `youtube` (or `youtube.force-ssl`) scope only when the user first creates a playlist, through the MCP step-up flow in [[mcp-authorization]]. Read-only tools keep narrower scopes.
+  > **Update (2026-11-28):** SRS v0.2 (AC-8) requests the management scope at first sign-in instead, so creating a playlist does not interrupt the MCP session with a second consent step. Least privilege still applies per call: public reads use the API key, and only the playlist writer uses the management scope (SC-6).
 - **Order without `position`.** We do not rely on `position`, which fails on playlists not sorted manually. We insert items one after another in ranked order, and confirm the resulting order with a recorded fixture.
 - **Partial failure (TQ-4).** Because each video is its own request, the run can stop half-way, for example on `quotaExceeded` after 12 of 20 videos. There is no transaction, so we should:
   - check the quota budget *before* starting, refusing the whole write if it cannot finish;
@@ -54,4 +58,7 @@ Building a playlist takes two kinds of call. First, **`playlists.insert`** creat
 - [[youtube-api-quota-costs]]
 - [[youtube-api-errors]]
 - [[mcp-authorization]]
+- [[decision-browser-only-playlist-confirmation]]
+- [[decision-youtube-provider-interface]]
+- [[decision-quota-budget-enforcement]]
 - [[index]]

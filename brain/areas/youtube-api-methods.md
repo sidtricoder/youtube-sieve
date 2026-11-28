@@ -1,8 +1,9 @@
 ---
 title: YouTube Data API methods and how youtube-sieve uses them
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
+updated: 2026-11-28
 authors: [Devaang-Rastogi]
 tags: [youtube-api]
 requirements: [FR-1, FR-2, FR-3, FR-4, FR-5]
@@ -93,6 +94,7 @@ All the read methods below share some rules. Each takes a required `part` parame
 
 ## Relevance to youtube-sieve
 - **Discovery pipeline (FR-1 to FR-4).** `search.list` finds candidate IDs, but its results have no statistics or duration. `videos.list` (or `videos.batchGetStats` when only numbers are needed) then fills those in, in batches. So the provider interface needs a "search" call and a separate "get details for many IDs" call.
+  > **Update (2026-11-28):** The provider interface now has `search_videos` and a batched `get_videos`, and uses `playlistItems.list` on the uploads playlist for channel videos ([[decision-youtube-provider-interface]]). `videos.batchGetStats` is left out for now, because no requirement needs statistics alone.
 - **Channel videos without search.** `channels.list` gives the uploads playlist, and `playlistItems.list` pages through it at 1 unit per page. This is cheaper and more reliable than `search.list` with `order=date`.
 - **Untrusted text.** Titles, descriptions and tags come from uploaders. They are bounded in size (100 characters, 5,000 bytes, 500 characters) but never treated as instructions.
 - **Defensive parsing.** Counts can be missing or arrive as strings, private or deleted IDs may simply be absent, and `failedVideoIds` lists them when `batchGetStats` is used. Each case needs a recorded fixture and a test.
@@ -102,4 +104,7 @@ All the read methods below share some rules. Each takes a required `part` parame
 - [[youtube-api-quota-costs]]
 - [[youtube-playlist-creation]]
 - [[youtube-api-errors]]
+- [[youtube-similarity-without-related-endpoint]]
+- [[iso-8601-durations]]
+- [[decision-youtube-provider-interface]]
 - [[index]]

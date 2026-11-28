@@ -1,9 +1,10 @@
 ---
 title: Finding candidates without a related-videos endpoint
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
-authors: [romirG]
+updated: 2026-11-28
+authors: [romirG, Devaang-Rastogi]
 tags: [youtube-api, discovery]
 requirements: [FR-1, FR-2, FR-3]
 sources:
@@ -26,3 +27,11 @@ YouTube stopped supporting the `search.list` parameter `relatedToVideoId` on 7 A
 3. Remove the seed and duplicate video IDs, then fetch candidate snippets in batches with `videos.list`. Search results identify matches but omit fields such as tags. Group videos by channel ID for channel discovery. Skip IDs that disappear between search and lookup.
 
 A candidate the search never returns cannot earn a high local score. Bound the number of pages using the budget in [[youtube-api-quota-costs]], then apply [[decision-tfidf-similarity]] to the collected metadata. This lets the reviewer distinguish a retrieval miss from a poor similarity score.
+> **Update (2026-11-28):** Search is never paged in the provider interface: each `search_videos` or `search_channels` call is one request of up to 50 results ([[decision-youtube-provider-interface]]). SRS QM-6 limits a workflow to 2 `search.list` calls by default, so the candidate pool also draws on channels' uploads playlists.
+
+## Related
+- [[youtube-api-methods]]
+- [[youtube-api-quota-costs]]
+- [[decision-tfidf-similarity]]
+- [[decision-youtube-provider-interface]]
+- [[index]]
