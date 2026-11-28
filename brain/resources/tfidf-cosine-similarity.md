@@ -1,8 +1,9 @@
 ---
 title: How TF-IDF and cosine similarity rank video metadata
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
+updated: 2026-11-28
 authors: [romirG]
 tags: [similarity, ranking]
 requirements: [FR-1, FR-2, FR-3, FR-5]
@@ -26,3 +27,8 @@ Cosine is the dot product divided by the product of the two vector lengths. Afte
 For FR-1 through FR-3 this gives a reproducible lexical ranking. For FR-5 it gives a relevance order to consider when filling a playlist. A later scorer could combine cosine with a bounded same-category bonus using explicit weights. Report each contribution separately so a reviewer can see why an item moved. Apply hard constraints such as remaining playlist time independently of that score.
 
 See [[decision-tfidf-similarity]] for the adopted defaults and the choice of a sparse implementation.
+
+## Related
+- [[decision-tfidf-similarity]]
+- [[youtube-similarity-without-related-endpoint]]
+- [[index]]
