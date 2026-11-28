@@ -117,15 +117,15 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
-| QM-1 · Daily ledger | Quota day and reset tested; ledger and run-time flow designed; implementation planned | [#23][i23], [#46][i46] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
-| QM-2 · Preflight estimate | Cost and budget comparisons tested; cache-aware planning and rejection designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
-| QM-3 · Caller budgets | Cost and budget comparisons tested; budget layers and caller attribution designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
-| QM-4 · Atomic reservations | Settlement arithmetic tested; reservation, metering and settlement designed; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
-| QM-5 · Metadata cache | Cache keys, time to live and personal-data separation designed; implementation planned | [#46][i46] | — | [Quota design][quota-design] |
-| QM-6 · Call batching | Batch cost arithmetic tested; per-workflow search cap designed; provider calls planned | [#23][i23], [#40][i40], [#46][i46] | [#24][p24], [#63][p63] | [Quota tests][quota-tests], [ADR 0005][provider], [Quota design][quota-design] |
-| QM-7 · Usage report | Usage resource designed; implementation planned | [#46][i46] | — | [Quota design][quota-design] |
-| QM-8 · Rate limits | Error contract and fixed-window limiter designed; runtime planned | [#43][i43], [#46][i46] | [#67][p67] | [Error catalogue][errors], [Quota design][quota-design] |
-| QM-9 · Upstream exhaustion | Error contract and exhaustion handling designed; runtime planned | [#43][i43], [#46][i46] | [#67][p67] | [Error catalogue][errors], [Quota design][quota-design] |
+| QM-1 · Daily ledger | Quota day and reset tested; ledger and run-time flow designed; implementation planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| QM-2 · Preflight estimate | Cost and budget comparisons tested; cache-aware planning and rejection designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| QM-3 · Caller budgets | Cost and budget comparisons tested; budget layers and caller attribution designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| QM-4 · Atomic reservations | Settlement arithmetic tested; reservation, metering and settlement designed; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| QM-5 · Metadata cache | Cache keys, time to live and personal-data separation designed; implementation planned | [#46][i46] | [#75][p75] | [Quota design][quota-design] |
+| QM-6 · Call batching | Batch cost arithmetic tested; per-workflow search cap designed; provider calls planned | [#23][i23], [#40][i40], [#46][i46] | [#24][p24], [#63][p63], [#75][p75] | [Quota tests][quota-tests], [ADR 0005][provider], [Quota design][quota-design] |
+| QM-7 · Usage report | Usage resource designed; implementation planned | [#46][i46] | [#75][p75] | [Quota design][quota-design] |
+| QM-8 · Rate limits | Error contract and fixed-window limiter designed; runtime planned | [#43][i43], [#46][i46] | [#67][p67], [#75][p75] | [Error catalogue][errors], [Quota design][quota-design] |
+| QM-9 · Upstream exhaustion | Error contract and exhaustion handling designed; runtime planned | [#43][i43], [#46][i46] | [#67][p67], [#75][p75] | [Error catalogue][errors], [Quota design][quota-design] |
 
 ### SK-1 · Video-to-playlist skill
 
@@ -213,14 +213,14 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
 | RL-1 · Availability | Planned | — | — | — |
-| RL-2 · Upstream failures | Error contract and cache use during outages designed; runtime planned | [#43][i43], [#46][i46] | [#67][p67] | [Error catalogue][errors], [Quota design][quota-design] |
+| RL-2 · Upstream failures | Error contract and cache use during outages designed; runtime planned | [#43][i43], [#46][i46] | [#67][p67], [#75][p75] | [Error catalogue][errors], [Quota design][quota-design] |
 
 ### SL · Scalability
 
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
 | SL-1 · Stateless instances | Architecture documented; deployment and integration planned | [#39][i39] | [#58][p58] | [ADR 0003][layers] |
-| SL-2 · Atomic coordination | Settlement arithmetic tested; database-locked reservation and rate counting designed; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| SL-2 · Atomic coordination | Settlement arithmetic tested; database-locked reservation and rate counting designed; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
 
 ### MT · Maintainability
 
@@ -299,6 +299,7 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [i9]: https://github.com/sidtricoder/youtube-sieve/issues/9
 [p2]: https://github.com/sidtricoder/youtube-sieve/pull/2
 [p10]: https://github.com/sidtricoder/youtube-sieve/pull/10
+[p75]: https://github.com/sidtricoder/youtube-sieve/pull/75
 [i55]: https://github.com/sidtricoder/youtube-sieve/issues/55
 [rank-tests]: ../tests/domain/test_similarity.py
 [duration-tests]: ../tests/domain/test_durations.py
