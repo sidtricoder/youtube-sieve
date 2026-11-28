@@ -21,3 +21,4 @@ Format: `YYYY-MM-DD | skill | author | what changed | PR`
 | 2026-11-27 | brain-ingest | 77-Div-77 | added [[prompt-injection-untrusted-metadata]], [[playlist-confirmation-security]] | PR #29 |
 | 2026-11-28 | brain-ingest | sidtricoder | added [[testing-with-fixtures-and-mocks]] | PR #34 |
 | 2026-11-28 | brain-refine | sidtricoder | refined [[agent-skills-format]] → resources/ (trial run of the skill) | PR #61 |
+| 2026-11-28 | brain-refine | 77-Div-77 | refined [[mcp-fundamentals]] → resources/; [[mcp-authorization]], [[youtube-oauth-scopes-and-identity]], [[youtube-oauth-token-lifecycle]], [[prompt-injection-untrusted-metadata]], [[playlist-confirmation-security]], [[testing-with-fixtures-and-mocks]] → areas/; checked sources and later decisions, fixed links and indexed all seven | PR pending |
