@@ -94,17 +94,17 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | FR-5.6 · Infeasible constraints | Planned | — | — | — |
 | FR-5.7 · Playlist order | Planned | — | — | — |
 | FR-5.8 · Constraint report | Planned | — | — | — |
-| FR-5.9 · Immutable draft | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.10 · Expiry | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.11 · Confirmation link | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.12 · Browser confirmation | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.13 · Owner and CSRF checks | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.14 · Confirmation boundary | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.15 · Ordered writes | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.16 · Atomic progress | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.17 · Resume | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.18 · Uncertain writes | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
-| FR-5.19 · Status and readback | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
+| FR-5.9 · Immutable draft | Immutability and re-verification before writing designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.10 · Expiry | Expiry on access designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.11 · Confirmation link | Draft response and approval link designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.12 · Browser confirmation | Approval page designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.13 · Owner and CSRF checks | Session, CSRF, origin and version checks designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.14 · Confirmation boundary | Credential separation and MCP surface designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.15 · Ordered writes | Private playlist and ordered inserts designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.16 · Atomic progress | Single-winner claim and intent-before-write designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.17 · Resume | Resume of remaining items designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.18 · Uncertain writes | Uncertain outcome and recovery designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
+| FR-5.19 · Status and readback | Status tool and read-back designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
 
 ### FR-6 and FR-7 supporting functions
 
@@ -118,7 +118,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
 | QM-1 · Daily ledger | Quota day and reset tested; ledger and run-time flow designed; implementation planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
-| QM-2 · Preflight estimate | Cost and budget comparisons tested; cache-aware planning and rejection designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| QM-2 · Preflight estimate | Cost and budget comparisons tested; cache-aware planning and rejection designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46], [#45][i45] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design], [Confirmation design][confirm-design] |
 | QM-3 · Caller budgets | Cost and budget comparisons tested; budget layers and caller attribution designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
 | QM-4 · Atomic reservations | Settlement arithmetic tested; reservation, metering, settlement and atomic persistence designed; implementation and concurrency tests planned | [#23][i23], [#46][i46], [#42][i42] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design], [ADR 0006](adr/0006-storage.md) |
 | QM-5 · Metadata cache | Cache keys, time to live and personal-data separation designed; implementation planned | [#46][i46] | [#75][p75] | [Quota design][quota-design] |
@@ -188,11 +188,11 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | SC-1 · MCP credentials | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-2 · Encryption | Token lifecycle researched; enforcement planned | [#14][i14], [#44][i44] | [#28][p28] | [Token lifecycle][tokens] |
 | SC-3 · Session cookies | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
-| SC-4 · Prompt injection | Threat researched; product safeguards planned | [#14][i14] | [#29][p29] | [Untrusted metadata][metadata] |
+| SC-4 · Prompt injection | Threat researched; escaping and no MCP write path designed for confirmation; product safeguards planned | [#14][i14], [#45][i45] | [#29][p29] | [Untrusted metadata][metadata], [Confirmation design][confirm-design] |
 | SC-5 · Input validation | Parameter binding specified; implementation planned | [#42][i42] | — | [ADR 0006](adr/0006-storage.md) |
 | SC-6 · Least privilege | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-7 · Redirects and replay | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
-| SC-8 · CSRF and origin | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
+| SC-8 · CSRF and origin | CSRF, origin and framing checks for confirmation designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm], [Confirmation design][confirm-design] |
 | SC-9 · Response headers | Planned | — | — | — |
 | SC-10 · Secret handling | Secret scan in CI; safe error contract designed | [#7][i7], [#43][i43] | [#8][p8], [#67][p67] | [CI workflow][ci], [Error catalogue][errors] |
 | SC-11 · Dependency security | Planned | — | — | — |
@@ -317,6 +317,7 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [provider]: adr/0005-youtube-provider-interface.md
 [errors]: design/errors.md
 [quota-design]: design/quota-and-caching.md
+[confirm-design]: design/playlist-confirmation.md
 [auth]: ../brain/inbox/mcp-authorization.md
 [identity]: ../brain/inbox/youtube-oauth-scopes-and-identity.md
 [tokens]: ../brain/inbox/youtube-oauth-token-lifecycle.md

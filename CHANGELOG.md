@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ADR 0006 selects the database, data-access layer and migration workflow (#42).
 - Logical data model with entity relationships, field protection, retention and transaction boundaries (#41).
 - Quota reservation, rate limiting and caching design in `docs/design/quota-and-caching.md`: the run-time flow from plan to settlement with a sequence diagram, budget layers and defaults, cache keys and time to live, rate limiting, exhaustion handling and the usage resource; and its decision note (#46).
+- Playlist drafts and browser confirmation design in `docs/design/playlist-confirmation.md`: state and sequence diagrams, what is persisted before each YouTube write, re-verification, duplicate-confirmation protection, resume, uncertain outcomes and recovery; and its decision note (#45).
 - Team skill for answering questions and drafting documents from cited vault notes, with a logged playlist-confirmation trial (#49).
 - Local FastAPI server with a configurable bind address and port and a public health check (#47).
 - Requirements traceability matrix and contributor guidance for keeping it current (#55).
@@ -36,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Traceability matrix rows for QM-1 to QM-9, RL-2 and SL-2 link the quota and caching design (#46).
 - Every Agent Skill declares `metadata.audience`: `product` (served by the MCP server to AI clients) or `team` (development tooling). `tools/validate_skills.py` rejects a missing or unknown audience and offers `skills_by_audience()` for the server (#62).
 - The seven YouTube API, duration and similarity research notes are refined out of `brain/inbox/` into `brain/areas/` and `brain/resources/`, with dated update lines where later decisions changed them, and linked from `brain/index.md` (#50).
+- Traceability matrix rows for FR-5.9 to FR-5.19, SC-4, SC-8 and QM-2 link the playlist confirmation design (#45).
 
 ### Fixed
 
