@@ -13,6 +13,7 @@ The full reasoning, including every option considered, lives in a **decision not
 | [0003](0003-layered-architecture.md) | Use a layered ports-and-adapters architecture | Accepted |
 | [0004](0004-tech-stack.md) | Build on MCP Python SDK 2.3, FastAPI and httpx2 | Accepted |
 | [0005](0005-youtube-provider-interface.md) | Reach YouTube through separate read and write protocols with typed errors | Accepted |
+| [0006](0006-storage.md) | Use SQLAlchemy Core transactions and Alembic migrations | Accepted |
 
 ## Writing a new ADR
 

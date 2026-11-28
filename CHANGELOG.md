@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- ADR 0006 selects the database, data-access layer and migration workflow (#42).
 - Logical data model with entity relationships, field protection, retention and transaction boundaries (#41).
 - Quota reservation, rate limiting and caching design in `docs/design/quota-and-caching.md`: the run-time flow from plan to settlement with a sequence diagram, budget layers and defaults, cache keys and time to live, rate limiting, exhaustion handling and the usage resource; and its decision note (#46).
 - Team skill for answering questions and drafting documents from cited vault notes, with a logged playlist-confirmation trial (#49).
+- Local FastAPI server with a configurable bind address and port and a public health check (#47).
 - Requirements traceability matrix and contributor guidance for keeping it current (#55).
 
 - Software Requirements Specification in `docs/srs.md`, converted from the Word document, with its figures (#32).
@@ -30,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SRS v0.2: AC-3, AC-6, IF-7 and A-2 follow MCP specification 2026-07-28 (stateless requests; Client ID Metadata Documents preferred over deprecated dynamic client registration). §3.8, QM-1, QM-2, QM-3, QM-6 and DC-2 use Google's two quota allowances: 100 `search.list` calls and 10,000 units a day. The per-account default budget is raised to 3,000 units so the largest playlist fits (#32).
 - The provider design's error table now points to the codes in the error catalogue instead of provisional ones (#43).
 - Traceability matrix rows for QM-1 to QM-9, RL-2 and SL-2 link the quota and caching design (#46).
+- The seven YouTube API, duration and similarity research notes are refined out of `brain/inbox/` into `brain/areas/` and `brain/resources/`, with dated update lines where later decisions changed them, and linked from `brain/index.md` (#50).
 
 ### Fixed
 

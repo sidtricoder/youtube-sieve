@@ -120,7 +120,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | QM-1 · Daily ledger | Quota day and reset tested; ledger and run-time flow designed; implementation planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
 | QM-2 · Preflight estimate | Cost and budget comparisons tested; cache-aware planning and rejection designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
 | QM-3 · Caller budgets | Cost and budget comparisons tested; budget layers and caller attribution designed; enforcement planned | [#19][i19], [#23][i23], [#46][i46] | [#20][p20], [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
-| QM-4 · Atomic reservations | Settlement arithmetic tested; reservation, metering and settlement designed; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| QM-4 · Atomic reservations | Settlement arithmetic tested; reservation, metering, settlement and atomic persistence designed; implementation and concurrency tests planned | [#23][i23], [#46][i46], [#42][i42] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design], [ADR 0006](adr/0006-storage.md) |
 | QM-5 · Metadata cache | Cache keys, time to live and personal-data separation designed; implementation planned | [#46][i46] | [#75][p75] | [Quota design][quota-design] |
 | QM-6 · Call batching | Batch cost arithmetic tested; per-workflow search cap designed; provider calls planned | [#23][i23], [#40][i40], [#46][i46] | [#24][p24], [#63][p63], [#75][p75] | [Quota tests][quota-tests], [ADR 0005][provider], [Quota design][quota-design] |
 | QM-7 · Usage report | Usage resource designed; implementation planned | [#46][i46] | [#75][p75] | [Quota design][quota-design] |
@@ -148,7 +148,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | IF-6 · Discovery 404s | Planned | — | — | — |
 | IF-7 · Client registration | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | IF-8 · Scopes | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
-| IF-9 · Browser routes | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
+| IF-9 · Browser routes | Health route tested; other browser routes planned | [#19][i19], [#45][i45], [#47][i47] | [#20][p20] | [ADR 0002][confirm], [Server tests](../tests/test_server.py) |
 | IF-10 · YouTube provider | Provider contract designed; adapters planned | [#40][i40] | [#63][p63] | [ADR 0005][provider] |
 | IF-11 · Outbound requests | Provider contract designed; adapters planned | [#40][i40] | [#63][p63] | [ADR 0005][provider] |
 | IF-12 · Transport | Stack selected; service integration planned | [#38][i38], [#47][i47] | [#59][p59] | [ADR 0004][stack] |
@@ -162,7 +162,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | PF-3 · Draft latency | Planned | — | — | — |
 | PF-4 · Account analysis | Planned | — | — | — |
 | PF-5 · Playlist writes | Planned | — | — | — |
-| PF-6 · Local requests | Planned | — | — | — |
+| PF-6 · Local requests | Local health handler tested; p95 latency verification planned | [#47][i47] | — | [Server tests](../tests/test_server.py) |
 | PF-7 · Authorization overhead | Planned | — | — | — |
 | PF-8 · Cold start | Planned | — | — | — |
 | PF-9 · Concurrency | Planned | — | — | — |
@@ -178,7 +178,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | DC-2 · Quota allowances | Cost and budget comparisons tested; enforcement planned | [#19][i19], [#23][i23] | [#20][p20], [#24][p24] | [Quota tests][quota-tests], [ADR 0001][quota] |
 | DC-3 · Metadata similarity | TF-IDF ranking tested; discovery workflows planned | [#13][i13], [#21][i21] | [#22][p22], [#25][p25], [#26][p26] | [Ranking tests][rank-tests], [Ranking decision][rank], [Candidate discovery][channels] |
 | DC-4 · Python stack | Stack selected; service integration planned | [#38][i38], [#47][i47] | [#59][p59] | [ADR 0004][stack] |
-| DC-5 · Database | Storage design planned | [#42][i42] | — | — |
+| DC-5 · Database | Storage backend and migration policy decided; adapter planned | [#42][i42] | — | [ADR 0006](adr/0006-storage.md) |
 | DC-6 · Google data policy | Planned | — | — | — |
 
 ### SC · Security
@@ -189,7 +189,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | SC-2 · Encryption | Token lifecycle researched; enforcement planned | [#14][i14], [#44][i44] | [#28][p28] | [Token lifecycle][tokens] |
 | SC-3 · Session cookies | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-4 · Prompt injection | Threat researched; product safeguards planned | [#14][i14] | [#29][p29] | [Untrusted metadata][metadata] |
-| SC-5 · Input validation | Planned | — | — | — |
+| SC-5 · Input validation | Parameter binding specified; implementation planned | [#42][i42] | — | [ADR 0006](adr/0006-storage.md) |
 | SC-6 · Least privilege | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-7 · Redirects and replay | Identity research; flow planned | [#14][i14], [#44][i44] | [#28][p28] | [Google scopes][identity] |
 | SC-8 · CSRF and origin | Browser confirmation boundary designed; workflow planned | [#19][i19], [#45][i45] | [#20][p20] | [ADR 0002][confirm] |
@@ -220,7 +220,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
 | SL-1 · Stateless instances | Architecture documented; deployment and integration planned | [#39][i39] | [#58][p58] | [ADR 0003][layers] |
-| SL-2 · Atomic coordination | Settlement arithmetic tested; database-locked reservation and rate counting designed; atomic storage planned | [#23][i23], [#46][i46] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design] |
+| SL-2 · Atomic coordination | Settlement arithmetic tested; transaction boundaries, database-locked reservation and rate counting designed; implementation and concurrency tests planned | [#23][i23], [#46][i46], [#42][i42] | [#24][p24], [#75][p75] | [Quota tests][quota-tests], [ADR 0001][quota], [Quota design][quota-design], [ADR 0006](adr/0006-storage.md) |
 
 ### MT · Maintainability
 
@@ -232,7 +232,7 @@ For DC-3, [issue #21][i21] led to [PR #22][p22]. In [the ranking tests][rank-tes
 
 | Requirement | Evidence and remaining work | Issue | Merged PR | Tests, design or notes |
 |---|---|---|---|---|
-| PT-1 · Container delivery | Architecture documented; deployment and integration planned | [#39][i39] | [#58][p58] | [ADR 0003][layers] |
+| PT-1 · Container delivery | Environment-based server configuration tested; container delivery planned | [#39][i39], [#47][i47] | [#58][p58] | [ADR 0003][layers], [Server tests](../tests/test_server.py) |
 
 ### IO · Interoperability
 
@@ -309,7 +309,7 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [ingest]: ../skills/brain-ingest/SKILL.md
 [refine]: ../skills/brain-refine/SKILL.md
 [rank]: ../brain/areas/decision-tfidf-similarity.md
-[duration]: ../brain/inbox/iso-8601-durations.md
+[duration]: ../brain/resources/iso-8601-durations.md
 [quota]: adr/0001-enforce-quota-budget-before-api-calls.md
 [confirm]: adr/0002-browser-only-playlist-confirmation.md
 [layers]: adr/0003-layered-architecture.md
@@ -321,7 +321,7 @@ In each PR, find the affected SRS IDs and update their rows. Link the issue and 
 [identity]: ../brain/inbox/youtube-oauth-scopes-and-identity.md
 [tokens]: ../brain/inbox/youtube-oauth-token-lifecycle.md
 [metadata]: ../brain/inbox/prompt-injection-untrusted-metadata.md
-[channels]: ../brain/inbox/youtube-similarity-without-related-endpoint.md
+[channels]: ../brain/areas/youtube-similarity-without-related-endpoint.md
 [skill-format]: ../brain/resources/agent-skills-format.md
 [para]: ../brain/resources/para-method.md
 [skill-validation]: ../brain/areas/decision-skill-validation.md
