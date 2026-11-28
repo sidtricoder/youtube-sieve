@@ -44,7 +44,7 @@ All the read methods below share some rules. Each takes a required `part` parame
   - Video-only filters need `type=video`, or the call fails with `invalidSearchFilter`. These are `videoDuration`, `videoCaption`, `videoDefinition`, `videoEmbeddable`, `videoLicense`, `videoType` and `eventType`. `videoDuration` takes `short` (under 4 min), `medium` (4–20 min) or `long` (over 20 min).
   - `maxResults` is 0–50 with a default of 5, and the API may return fewer.
   - `pageInfo.totalResults` is only an approximation, so it must not be used to build page links.
-  - Searching one channel with `type=video` returns at most 500 videos.
+  - Searching one channel with `type=video` returns at most 500 videos. The limit does not apply when `forMine`, `forDeveloper` or `forContentOwner` is also set.
   - A non-default `order` may give a smaller or incomplete result set.
   - Basic searches work with an API key. `forMine` and similar filters need OAuth.
   - The page does not mention `relatedToVideoId`, so we cannot rely on a related-videos search.
@@ -76,7 +76,7 @@ All the read methods below share some rules. Each takes a required `part` parame
   - The page says `viewCount` includes "co-views" when several people watch together on a TV.
   - It has no title, description or tags. So it can replace `videos.list` only where we need numbers alone, for example refreshing statistics for cached videos. It should be tried against a recorded fixture before we depend on it.
 - **`channels.list`: channel context for ranking and similar-channel features**
-  - Takes exactly one filter: `id` (comma-separated), `forHandle` (a leading `@` is allowed), `forUsername`, or `mine` (OAuth).
+  - Takes exactly one filter: `id` (comma-separated), `forHandle` (a leading `@` is allowed), `forUsername`, `mine` (OAuth), `categoryId` or `managedByMe` (content owners only). We use only the first four.
   - Parts include `snippet`, `statistics`, `contentDetails`, `status` and `topicDetails`.
   - `contentDetails.relatedPlaylists.uploads` is the ID of the channel's uploads playlist, which lets us list a channel's videos through `playlistItems.list` at 1 unit per page instead of spending search calls.
   - `maxResults` is 0–50 with a default of 5.

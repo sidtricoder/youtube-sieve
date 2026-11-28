@@ -23,7 +23,7 @@ Every YouTube Data API v3 request costs quota units, charged to the Google Cloud
 - **100 `search.list` calls** per day, in a bucket of their own.
 - **100 `videos.insert` calls** per day, also separate. We never upload, so this does not apply to us.
 - **10,000 units** per day shared by every other method.
-- Quotas reset at **midnight Pacific Time**, not UTC and not at our own local midnight.
+- Quotas reset at **midnight Pacific Time**, not UTC and not at our own local midnight. This is stated on the quota cost page; the getting-started page gives no reset time.
 - A project that needs more can apply through Google's quota extension request form.
 
 **Cost of the methods we plan to use (quota cost table)**
