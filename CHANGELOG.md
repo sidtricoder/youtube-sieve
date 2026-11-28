@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Refined MCP, authentication, security and testing research into PARA, aligned it with current decisions and linked all seven notes from the index (#51).
 - `README.md` now has project status, a quick start, the check commands and links to the key documents (#35).
 - `CONTRIBUTING.md` has a one-time git setup section, including `fetch.prune` (#35).
 - `CONTRIBUTING.md` describes the team's merge-commit workflow: merging `main` into branches, resolving `CHANGELOG.md` conflicts, stacked pull requests, and Conventional Commits on every commit (#37).
