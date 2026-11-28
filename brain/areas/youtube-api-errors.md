@@ -1,8 +1,9 @@
 ---
 title: YouTube Data API error reasons
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
+updated: 2026-11-28
 authors: [Devaang-Rastogi]
 tags: [youtube-api, errors]
 requirements: [TQ-4]
@@ -41,6 +42,7 @@ The errors reference lists each error by an HTTP status, an error type (such as 
 
 ## Relevance to youtube-sieve
 Proposed handling for TQ-4, to be confirmed in a decision note:
+> **Update (2026-11-28):** Confirmed with changes in [[decision-youtube-provider-interface]] (ADR 0005). The provider raises typed errors (`QuotaExhausted`, `AuthRequired`, `ChannelRequired`, `NotFound`, `WriteRejected`, `Transient`, `BadRequest`). A private or deleted item in a batch is returned as missing data, not an error. Token refresh is the accounts service's job, not the provider's. Reads are retried a bounded number of times and writes never are.
 
 | Group | Reasons | Retry? | What the user sees |
 |---|---|---|---|
@@ -59,4 +61,6 @@ Proposed handling for TQ-4, to be confirmed in a decision note:
 - [[youtube-api-quota-costs]]
 - [[youtube-playlist-creation]]
 - [[mcp-authorization]]
+- [[decision-youtube-provider-interface]]
+- [[decision-quota-budget-enforcement]]
 - [[index]]

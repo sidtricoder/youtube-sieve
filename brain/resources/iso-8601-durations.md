@@ -1,8 +1,9 @@
 ---
 title: Interpreting YouTube durations for a time-limited playlist
 type: research
-status: inbox
+status: distilled
 created: 2026-11-22
+updated: 2026-11-28
 authors: [romirG]
 tags: [youtube-api, durations, playlists]
 requirements: [FR-5, TQ-1]
@@ -31,3 +32,8 @@ For FR-5, compare each ranked candidate's seconds with the time left. With a one
 For TQ-1, test exact fits, omitted units, day boundaries and malformed or missing durations. Keep a failed parse distinct from a known zero. The API exposes live and upcoming status through `snippet.liveBroadcastContent`; a value of `P0D` alone cannot establish whether a stream is live. A live or upcoming item with unknown final runtime cannot be counted as a free slot in a time-limited playlist.
 
 See [[youtube-api-methods]] for the metadata lookup that supplies the duration before playlist creation.
+
+## Related
+- [[youtube-api-methods]]
+- [[decision-package-layout]]
+- [[index]]

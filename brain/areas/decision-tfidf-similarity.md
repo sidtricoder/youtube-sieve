@@ -41,3 +41,4 @@ Option 2, in `youtube_sieve.domain.similarity`:
 ## Related
 - [[index]]
 - [[decision-quota-budget-enforcement]]
+- [[youtube-similarity-without-related-endpoint]]

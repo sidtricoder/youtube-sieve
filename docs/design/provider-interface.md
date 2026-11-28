@@ -356,7 +356,7 @@ class BadRequest(ProviderError):
     pass  # our bug: a malformed request
 ```
 
-How Google's responses map to these, based on the errors reference ([`brain/inbox/youtube-api-errors.md`](../../brain/inbox/youtube-api-errors.md)):
+How Google's responses map to these, based on the errors reference ([`brain/areas/youtube-api-errors.md`](../../brain/areas/youtube-api-errors.md)):
 
 | Google response | Raised as | Retried by the provider? | Expected service reaction | Code ([errors.md](errors.md)) |
 |---|---|---|---|---|
@@ -515,7 +515,7 @@ The HTTP adapter may be split into several classes (one per protocol) sharing on
 
 ## 12. Open questions, to settle with recorded fixtures
 
-1. Does `videos.list` with `id=` silently drop private or deleted videos, as assumed? ([`youtube-api-errors.md`](../../brain/inbox/youtube-api-errors.md) notes this is unconfirmed.)
+1. Does `videos.list` with `id=` silently drop private or deleted videos, as assumed? ([`youtube-api-errors.md`](../../brain/areas/youtube-api-errors.md) notes this is unconfirmed.)
 2. How do deleted or private videos appear in `playlistItems.list` (title "Deleted video", missing `videoPublishedAt`, or `status.privacyStatus`)? This decides how `PlaylistEntry.privacy_status` is filled.
 3. In what order does `videos.list?myRating=like` return videos? FR-3.2 wants "most recent first".
 4. `subscriptions.list` cannot sort by date (`order` is `alphabetical`, `relevance` or `unread`). To satisfy FR-3.2's "most recent first", the service may need to read up to the limit and sort locally, which costs more requests. Decide in the FR-3 design.
