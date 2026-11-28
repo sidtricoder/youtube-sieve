@@ -4,6 +4,7 @@ description: Adds new material to the team knowledge base in brain/ as schema-va
 metadata:
   project: youtube-sieve
   stage: capture
+  audience: team
 ---
 
 # brain-ingest

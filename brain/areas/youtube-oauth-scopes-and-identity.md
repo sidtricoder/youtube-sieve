@@ -1,8 +1,9 @@
 ---
 title: YouTube OAuth scopes and identity
 type: research
-status: inbox
+status: distilled
 created: 2026-11-26
+updated: 2026-11-28
 authors: [77-Div-77]
 tags: [oauth, youtube-api, security]
 requirements: [AC-2, AC-6, AC-7, AC-8, FR-5, IF-8, SC-1, SC-3, SC-6, SC-7]
@@ -77,7 +78,8 @@ user accounts. The scope name `force-ssl` does not mean read-only.
   makes those additional scopes optional. Verify the chosen Google flow during implementation.
 - **Separate credentials:** a Google ID token proves identity; a Google access token
   authorizes Google calls. MCP credentials authorize calls to our server using a distinct
-  application scope (AC-6, IF-8). Browser sessions are separate again (SC-3). See
+  application scope (AC-6, IF-8). AC-6 now requires Client ID Metadata Documents with
+  dynamic registration only for compatibility. Browser sessions are separate again (SC-3). See
   [[mcp-authorization]]; Google's refresh behavior is covered in [[youtube-oauth-token-lifecycle]].
   SC-1 requires rotation and replay detection for our MCP refresh tokens.
 - **Confirmation:** broad Google permission does not approve an individual playlist.
@@ -86,11 +88,12 @@ user accounts. The scope name `force-ssl` does not mean read-only.
   (FR-5). Enforce this through application access checks and separate read/write interfaces.
 
 OAuth and browser confirmation are planned; the current application implements duration
-parsing and similarity scoring. Future security checks should reject invalid identity
+parsing, similarity scoring and quota arithmetic. Future security checks should reject invalid identity
 claims, replayed callbacks and credentials presented at the wrong interface.
 
 ## Related
 
 - [[youtube-oauth-token-lifecycle]]
 - [[mcp-authorization]]
+- [[playlist-confirmation-security]]
 - [[decision-browser-only-playlist-confirmation]]

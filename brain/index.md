@@ -23,6 +23,12 @@ Every run of a brain skill is recorded in [[log]].
 
 ## Areas
 
+- [[mcp-authorization]]: MCP discovery, client registration and credential boundaries
+- [[youtube-oauth-scopes-and-identity]]: Google scopes, verified identity and initial consent
+- [[youtube-oauth-token-lifecycle]]: refreshing Google tokens, re-authorization and disconnection
+- [[prompt-injection-untrusted-metadata]]: keep YouTube metadata separate from instructions and consent
+- [[playlist-confirmation-security]]: owner-only browser approval and separate MCP credentials
+- [[testing-with-fixtures-and-mocks]]: isolated fixtures, fake providers and mocked HTTP adapters
 - [[decision-storage]]: database profiles, transaction primitives and migration tooling (ADR 0006)
 - [[decision-shared-data-model]]: owner deletion and shared quota accounting
 
@@ -45,6 +51,7 @@ Every run of a brain skill is recorded in [[log]].
 
 ## Resources
 
+- [[mcp-fundamentals]]: stateless MCP requests, tools, transports and project mapping
 - [[para-method]]: how PARA works and how this vault applies it
 - [[agent-skills-format]]: SKILL.md fields and limits, progressive disclosure and validation
 - [[iso-8601-durations]]: how YouTube's ISO 8601 durations convert to seconds, and the edge cases the parser rejects

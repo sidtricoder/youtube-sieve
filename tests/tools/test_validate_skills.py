@@ -24,7 +24,10 @@ class Repo:
         directory = self.skills / name
         directory.mkdir(parents=True, exist_ok=True)
         if frontmatter is None:
-            frontmatter = f"name: {name}\ndescription: Does one thing. Use when testing."
+            frontmatter = (
+                f"name: {name}\ndescription: Does one thing. Use when testing.\n"
+                "metadata:\n  audience: team"
+            )
         path = directory / "SKILL.md"
         path.write_text(f"---\n{frontmatter}\n---\n\n# {name}\n\n{body}", encoding="utf-8")
         return path
@@ -118,7 +121,7 @@ def test_skill_md_without_frontmatter_is_reported(repo):
 def test_optional_specification_fields_are_accepted(repo):
     frontmatter = (
         "name: brain-ingest\ndescription: Does one thing.\nlicense: MIT\n"
-        "compatibility: Requires Python 3.12\nmetadata:\n  owner: team"
+        "compatibility: Requires Python 3.12\nmetadata:\n  owner: team\n  audience: product"
     )
     repo.skill("brain-ingest", frontmatter=frontmatter)
     assert repo.problems() == []
@@ -180,7 +183,9 @@ def test_citation_inside_code_does_not_count(repo):
 
 
 def test_citation_in_frontmatter_does_not_count(repo):
-    frontmatter = f"name: brain-ingest\ndescription: Uses [[{DISTILLED_NOTE}]]."
+    frontmatter = (
+        f"name: brain-ingest\ndescription: Uses [[{DISTILLED_NOTE}]].\nmetadata:\n  audience: team"
+    )
     repo.skill("brain-ingest", body="No citation.\n", frontmatter=frontmatter)
     assert_single_problem(repo, "distilled note")
 
@@ -192,6 +197,87 @@ def test_missing_vault_is_reported(tmp_path):
     )
     problems = [str(p) for p in vs.validate(tmp_path / "skills", tmp_path / "brain")]
     assert any("vault" in p and "does not exist" in p for p in problems), problems
+
+
+# --- Project rule: every skill declares its audience ----------------------------------------
+
+
+@pytest.mark.parametrize("audience", sorted(vs.AUDIENCES))
+def test_each_documented_audience_is_accepted(repo, audience):
+    frontmatter = f"name: brain-ingest\ndescription: d\nmetadata:\n  audience: {audience}"
+    repo.skill("brain-ingest", frontmatter=frontmatter)
+    assert repo.problems() == []
+
+
+def test_skill_without_metadata_is_reported(repo):
+    repo.skill("brain-ingest", frontmatter="name: brain-ingest\ndescription: d")
+    assert_single_problem(repo, "brain-ingest", "audience")
+
+
+def test_skill_with_metadata_but_no_audience_is_reported(repo):
+    repo.skill(
+        "brain-ingest", frontmatter="name: brain-ingest\ndescription: d\nmetadata:\n  stage: x"
+    )
+    assert_single_problem(repo, "audience", "product", "team")
+
+
+@pytest.mark.parametrize("value", ["Team", "public", "users", "''"])
+def test_unknown_audience_is_reported(repo, value):
+    frontmatter = f"name: brain-ingest\ndescription: d\nmetadata:\n  audience: {value}"
+    repo.skill("brain-ingest", frontmatter=frontmatter)
+    assert_single_problem(repo, "audience")
+
+
+def test_audience_outside_metadata_does_not_count(repo):
+    repo.skill("brain-ingest", frontmatter="name: brain-ingest\ndescription: d\naudience: team")
+    problems = repo.problems()
+    assert any("audience" in p and "metadata" in p for p in problems), problems
+
+
+def test_audience_problem_is_reported_alongside_other_problems(repo):
+    repo.skill(
+        "brain-ingest", body="No citation.\n", frontmatter="name: brain-ingest\ndescription: d"
+    )
+    problems = repo.problems()
+    assert any("audience" in p for p in problems) and any("distilled note" in p for p in problems)
+
+
+def test_skills_by_audience_lists_each_skill(repo):
+    repo.skill("brain-ingest")
+    repo.skill(
+        "video-to-playlist",
+        frontmatter=("name: video-to-playlist\ndescription: d\nmetadata:\n  audience: product"),
+    )
+    assert vs.skills_by_audience(repo.skills) == {
+        "product": ["video-to-playlist"],
+        "team": ["brain-ingest"],
+    }
+
+
+@pytest.mark.parametrize(
+    "frontmatter",
+    [
+        "name: brain-ingest\ndescription: d",
+        "name: brain-ingest\ndescription: d\nmetadata:\n  audience: public",
+        "name: brain-ingest\ndescription: d\nmetadata:\n  audience: Team",
+    ],
+)
+def test_skills_by_audience_skips_skills_without_a_valid_audience(repo, frontmatter):
+    repo.skill("brain-ingest", frontmatter=frontmatter)
+    assert vs.skills_by_audience(repo.skills) == {"product": [], "team": []}
+
+
+def test_skills_by_audience_skips_directories_without_skill_md(repo):
+    repo.skill("brain-ingest")
+    (repo.skills / "empty-folder").mkdir()
+    assert vs.skills_by_audience(repo.skills) == {"product": [], "team": ["brain-ingest"]}
+
+
+def test_repository_skills_all_declare_an_audience():
+    root = Path(__file__).resolve().parents[2]
+    grouped = vs.skills_by_audience(root / "skills")
+    declared = sorted(name for names in grouped.values() for name in names)
+    assert declared == sorted(p.name for p in vs.skill_directories(root / "skills"))
 
 
 # --- Reporting and CLI ----------------------------------------------------------------------

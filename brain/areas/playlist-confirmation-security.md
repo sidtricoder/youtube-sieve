@@ -1,8 +1,9 @@
 ---
 title: Playlist confirmation and authorization boundaries
 type: research
-status: inbox
+status: distilled
 created: 2026-11-27
+updated: 2026-11-28
 authors: [77-Div-77]
 tags: [security, playlists, authorization]
 requirements: [FR-5, SC-3, SC-8]
@@ -30,8 +31,9 @@ of a particular playlist; see [[youtube-oauth-scopes-and-identity]].
 - MCP tools, resources, prompts and credentials cannot confirm or execute playlist
   writes. Reject MCP credentials on confirmation routes and browser credentials on
   the MCP endpoint (FR-5.14, SC-3).
-- Read progress through `playlist_status`. Resuming a known partial write also needs
-  explicit browser confirmation; the client cannot resume it.
+- Read progress through `playlist_status` (FR-5.19). Resuming a known partial write
+  needs another browser confirmation (FR-5.17); an uncertain write must not retry
+  automatically (FR-5.18). The client cannot resume either.
 
 ## Relevance to youtube-sieve
 
@@ -42,6 +44,7 @@ It does not prevent every misleading response or attempt to socially engineer th
 
 These controls remain planned. Future checks should reject write attempts using malicious
 metadata, MCP credentials, expired drafts or another user's session.
+[[mcp-authorization]] explains why an MCP grant cannot cross this browser boundary.
 
 ## Related
 

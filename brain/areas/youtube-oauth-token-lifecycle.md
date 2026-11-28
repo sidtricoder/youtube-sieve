@@ -1,11 +1,12 @@
 ---
 title: YouTube OAuth token expiry and re-authorization
 type: research
-status: inbox
+status: distilled
 created: 2026-11-26
+updated: 2026-11-28
 authors: [77-Div-77]
 tags: [oauth, tokens, security]
-requirements: [AC-9, AC-10, AC-11, SC-2, SC-10, TQ-4]
+requirements: [AC-9, AC-10, AC-11, IF-11, SC-2, SC-10, TQ-4]
 sources:
   - https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps
   - https://developers.google.com/identity/protocols/oauth2
@@ -55,8 +56,10 @@ token-limit invalidation, time-limited consent or applicable policy changes. See
 
 An `invalid_grant` during initial code exchange can instead mean an invalid code.
 Never expose credentials or raw provider error bodies, and never automatically replay
-a playlist write whose outcome is uncertain. See [[youtube-api-errors]] for related
-errors; its general authorization advice needs these distinctions.
+a playlist write (IF-11), especially when its outcome is uncertain. See [[youtube-api-errors]]
+for upstream reasons and [[decision-error-catalogue]] for application responses:
+`reauthorization_required` for a revoked/expired Google grant, `write_access_required`
+for missing Google write permission. These differ from MCP HTTP 401/403 failures.
 
 **Synthetic example:** A user's access token expires, but their refresh token is valid.
 Refresh returns a new access token, so a personal read continues without sign-in. After
@@ -92,4 +95,5 @@ from Google's upstream behavior; see [[mcp-authorization]].
 
 - [[youtube-oauth-scopes-and-identity]]
 - [[youtube-api-errors]]
+- [[mcp-authorization]]
 - [[decision-browser-only-playlist-confirmation]]

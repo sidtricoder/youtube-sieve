@@ -4,6 +4,7 @@ description: Turns notes in the brain/ inbox into distilled, linked notes in the
 metadata:
   project: youtube-sieve
   stage: refine
+  audience: team
 ---
 
 # brain-refine
