@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - YouTube provider interface design in `docs/design/provider-interface.md`: read and write protocols, quota cost and failure modes of each method, typed provider errors, the in-memory fake and a class diagram; ADR 0005 and its decision note (#40).
 - `brain-refine` skill: check inbox notes against sources and later decisions, merge duplicates, fix links, file them in PARA folders and update the index; trial run refined `agent-skills-format` into `resources/` (#48).
 - Error catalogue in `docs/design/errors.md`: every error code with its channel, message pattern, retryability and details, the mapping from domain and provider errors, and logging rules; and its decision note (#43).
+- `skills/README.md` listing every Agent Skill and its audience (#62).
 
 ### Changed
 
@@ -28,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CONTRIBUTING.md` describes the team's merge-commit workflow: merging `main` into branches, resolving `CHANGELOG.md` conflicts, stacked pull requests, and Conventional Commits on every commit (#37).
 - SRS v0.2: AC-3, AC-6, IF-7 and A-2 follow MCP specification 2026-07-28 (stateless requests; Client ID Metadata Documents preferred over deprecated dynamic client registration). §3.8, QM-1, QM-2, QM-3, QM-6 and DC-2 use Google's two quota allowances: 100 `search.list` calls and 10,000 units a day. The per-account default budget is raised to 3,000 units so the largest playlist fits (#32).
 - The provider design's error table now points to the codes in the error catalogue instead of provisional ones (#43).
+- Every Agent Skill declares `metadata.audience`: `product` (served by the MCP server to AI clients) or `team` (development tooling). `tools/validate_skills.py` rejects a missing or unknown audience and offers `skills_by_audience()` for the server (#62).
 
 ### Fixed
 

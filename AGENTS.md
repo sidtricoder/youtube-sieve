@@ -80,4 +80,5 @@ Every new feature and every bug fix ships with rigorous unit tests in the same p
 | Research and decisions so far | `brain/index.md` |
 | Accepted architecture decisions | `docs/adr/README.md` |
 | Adding material to the knowledge base | `skills/brain-ingest/SKILL.md` |
+| Which skills exist, and which are served to AI clients | `skills/README.md` |
 | What changed recently | `CHANGELOG.md` |

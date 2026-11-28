@@ -128,7 +128,7 @@ python -m tools.validate_skills   # Agent Skills: specification + cites a distil
 
 ## Skills
 
-Agent Skills live in `skills/<name>/SKILL.md` and follow the [Agent Skills specification](https://agentskills.io/specification). Each skill must cite at least one distilled note in `brain/` with a `[[wikilink]]` in its body. CI checks both.
+Agent Skills live in `skills/<name>/SKILL.md` and follow the [Agent Skills specification](https://agentskills.io/specification). Each skill must cite at least one distilled note in `brain/` with a `[[wikilink]]` in its body, and declare its audience as `metadata.audience`: `product` for skills the MCP server serves to AI clients, or `team` for development tooling (see `skills/README.md`). CI checks all three.
 
 ## Security
 
