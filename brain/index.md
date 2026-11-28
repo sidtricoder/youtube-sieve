@@ -43,6 +43,7 @@ Every run of a brain skill is recorded in [[log]].
 - [[decision-youtube-provider-interface]]: separate read and write protocols, bound credentials, metered calls and typed errors (ADR 0005)
 - [[decision-error-catalogue]]: one catalogue of error codes, mapped in the services layer, with a structured error object
 - [[decision-quota-runtime-and-caching]]: cache-aware quota planning, account attribution, fixed-window rate limits and outage behaviour
+- [[decision-playlist-confirmation-flow]]: claim-then-write confirmation, back to pending on refusal, a write lease for recovery, quota checked at draft and reserved at confirmation
 - [[youtube-api-quota-costs]]: daily allowances, the separate search bucket, per-method costs and how they shape spending
 - [[youtube-api-methods]]: the Data API methods we call, their parameters and parts, and what each is used for
 - [[youtube-api-errors]]: Google's error reasons for our methods and how each group is handled
